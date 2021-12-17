@@ -28,6 +28,9 @@ call plug#begin()
     Plug 'hrsh7th/cmp-vsnip'
     Plug 'hrsh7th/vim-vsnip'
 
+    " nvim-autopairs 插件
+    Plug 'windwp/nvim-autopairs'
+
     " Golang 插件
     Plug 'fatih/vim-go', {'tag': '*'}
 
@@ -186,6 +189,8 @@ lua << EOF
   require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
     capabilities = capabilities
   }
+
+  require('nvim-autopairs').setup{}
 EOF
 
 " Nerdtree 设置
