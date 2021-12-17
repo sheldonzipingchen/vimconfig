@@ -112,7 +112,7 @@ au BufRead,BufNewFile *.go set expandtab
 
 " Nerdtree 设置
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+let NERDTreeIgnore=['\.pyc','\~$','\.swp', '\.git',]
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>r :NERDTreeRefreshRoot<CR>
 
