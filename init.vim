@@ -14,8 +14,8 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
-    " coc.nvim 插件
-    Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    " nvim-lspconfig 插件
+    Plug 'neovim/nvim-lspconfig'
 
     " Golang 插件
     Plug 'fatih/vim-go', {'tag': '*'}
@@ -110,6 +110,11 @@ inoremap <C-S-Tab> <C-O><C-W>W
 au BufRead,BufNewFile *.py set expandtab
 au BufRead,BufNewFile *.go set expandtab
 
+lua << EOF
+  require'lspconfig'.pyright.setup{}
+  require'lspconfig'.gopls.setup{}
+EOF
+
 " Nerdtree 设置
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.pyc','\~$','\.swp', '\.git',]
@@ -179,3 +184,4 @@ function! UpdateSkim() abort
 
     call jobstart(l:cmd + [line('.'), l:out, l:src_file_path])
 endfunction
+
