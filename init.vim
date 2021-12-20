@@ -21,6 +21,10 @@ call plug#begin()
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'projekt0n/circles.nvim'
 
+    " telescope.nvim 插件
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+
     " nvim-lspconfig 插件
     Plug 'neovim/nvim-lspconfig'
 
@@ -209,3 +213,8 @@ function! UpdateSkim() abort
     call jobstart(l:cmd + [line('.'), l:out, l:src_file_path])
 endfunction
 
+" telescope 设置
+nnoremap <leader>ff <cmd>Telescope find_files<CR>
+nnoremap <leader>fg <cmd>Telescope live_grep<CR>
+nnoremap <leader>fb <cmd>Telescope buffers<CR>
+nnoremap <leader>fh <cmd>Telescope help_tags<CR>
