@@ -3,6 +3,9 @@
 call plug#begin()
     " gruvbox 插件
     Plug 'morhetz/gruvbox'
+    
+    " github-nvim-theme 插件
+    Plug 'projekt0n/github-nvim-theme'
 
     " Nerdtree 插件
     Plug 'preservim/nerdtree'
@@ -13,6 +16,10 @@ call plug#begin()
     " Airline 插件
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+
+    " circles.nvim 插件
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'projekt0n/circles.nvim'
 
     " nvim-lspconfig 插件
     Plug 'neovim/nvim-lspconfig'
@@ -42,9 +49,6 @@ call plug#begin()
     Plug 'honza/vim-snippets'
 
 call plug#end()
-
-colorscheme gruvbox
-" set background=light
 
 set hidden
 set history=500
@@ -127,14 +131,13 @@ au BufRead,BufNewFile *.go set expandtab
 
 set completeopt=menu,menuone,noselect
 
+lua require("common")
+
 lua require('gopls')
 lua require('pyright')
+lua require('solargraph')
 lua require('nvim-cmp')
-lua require('autopairs')
 
-lua << EOF
-  require('nvim-autopairs').setup{}
-EOF
 
 " Nerdtree 设置
 let NERDTreeShowHidden=1
