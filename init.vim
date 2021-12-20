@@ -140,6 +140,7 @@ lua require("common")
 lua require('gopls')
 lua require('pyright')
 lua require('solargraph')
+lua require('rust')
 lua require('nvim-cmp')
 
 
@@ -168,7 +169,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#overflow_marker = '_'
 let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline_theme='gruvbox'
+let g:airline_theme='github'
 
 " vim-go 设置
 let g:go_def_mode = 'gopls'
