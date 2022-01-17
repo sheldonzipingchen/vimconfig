@@ -3,7 +3,10 @@ require("circles").setup()
 local autopairs = require('nvim-autopairs')
 autopairs.setup{}
 
-require("github-theme").setup({
-    theme_style="dimmed",
-})
+require("nightfox").load('nightfox')
 
+require('lualine').setup {
+    options = {
+        theme = "nightfox"
+    }
+}

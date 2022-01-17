@@ -4,6 +4,13 @@ call plug#begin()
     " gruvbox 插件
     Plug 'morhetz/gruvbox'
     
+    " nightfox 插件
+    Plug 'EdenEast/nightfox.nvim'
+
+    " nvim-lualine/lualine.nvim
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'kyazdani42/nvim-web-devicons'
+
     " github-nvim-theme 插件
     Plug 'projekt0n/github-nvim-theme'
 
