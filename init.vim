@@ -4,6 +4,9 @@ call plug#begin()
     " nightfox 插件
     Plug 'EdenEast/nightfox.nvim'
 
+    " minimalist 插件
+    Plug 'dikiaap/minimalist'
+
     " nvim-lualine/lualine.nvim
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'kyazdani42/nvim-web-devicons'
@@ -52,6 +55,13 @@ call plug#begin()
     " tex snippets 插件
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
+
+    " javascript or typescript
+    Plug 'pangloss/vim-javascript'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+    Plug 'jparise/vim-graphql'
 
 call plug#end()
 
@@ -163,14 +173,13 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
-
 " Airline 设置
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#overflow_marker = '_'
 let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline_theme='angr'
+let g:airline_theme='minimalist'
 
 " vim-go 设置
 let g:go_def_mode = 'gopls'
