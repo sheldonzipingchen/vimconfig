@@ -73,13 +73,39 @@ for file in split(glob(Dot('rc/*.vim')), '\n')
   exe 'source' file
 endfor
 
-lua require("common")
+lua << EOF
 
-lua require('pyright')
-lua require('solargraph')
-lua require('rust')
+require("circles").setup({
+    icons = {
+        empty = "",
+        filled = "",
+        lsp_prefix = ""
+    },
+    lsp = true
+})
+
+local autopairs = require('nvim-autopairs')
+autopairs.setup{}
+
+require("nightfox").load('nightfox')
+
+require('lualine').setup {
+    options = {
+        theme = "nightfox"
+    }
+}
+
+local nvim_lsp = require('lspconfig')
+
+-- python lsp 配置
+nvim_lsp.pyright.setup{}
+
+-- rust lsp 配置
+nvim_lsp.rust_analyzer.setup{}
+
+EOF
+
 lua require('nvim-cmp')
-
 
 
 " vimtex 设置
