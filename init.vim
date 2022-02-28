@@ -1,139 +1,92 @@
-" vim:set expandtab shiftwidth=2 tabstop=8 textwidth=72:
-
 call plug#begin()
-    " nightfox 插件
-    Plug 'EdenEast/nightfox.nvim'
+    Plug 'morhetz/gruvbox'
 
-    " minimalist 插件
-    Plug 'dikiaap/minimalist'
-
-    " nvim-lualine/lualine.nvim
-    Plug 'nvim-lualine/lualine.nvim'
-    Plug 'kyazdani42/nvim-web-devicons'
-
-    " Nerdtree 插件
     Plug 'preservim/nerdtree'
-
-    " vim-fugitive 插件
-    Plug 'tpope/vim-fugitive'
-    
-    " Airline 插件
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-
-    " circles.nvim 插件
-    Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'projekt0n/circles.nvim'
-
-    " telescope.nvim 插件
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
-
-    " nvim-lspconfig 插件
-    Plug 'neovim/nvim-lspconfig'
-
-    " nvim-cmp 插件
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'hrsh7th/cmp-buffer'
-    Plug 'hrsh7th/cmp-path'
-    Plug 'hrsh7th/cmp-cmdline'
-    Plug 'hrsh7th/nvim-cmp'
-
-    " vsnip 插件
-    Plug 'hrsh7th/cmp-vsnip'
-    Plug 'hrsh7th/vim-vsnip'
-
-    " nvim-autopairs 插件
-    Plug 'windwp/nvim-autopairs'
-
-    " Golang 插件
-    Plug 'fatih/vim-go', {'tag': '*'}
-
-    " vimtex 插件
-    Plug 'lervag/vimtex'
-
-    " tex snippets 插件
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-
-    " javascript or typescript
-    Plug 'pangloss/vim-javascript'
-    Plug 'leafgarland/typescript-vim'
-    Plug 'peitalin/vim-jsx-typescript'
-    Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-    Plug 'jparise/vim-graphql'
-
 call plug#end()
 
-function! Dot(path)
-  return "~/.config/nvim/" .a:path
-endfunction
+" ========================================================
+" 基本设置
+" ========================================================
+filetype plugin indent on
 
-for file in split(glob(Dot('rc/*.vim')), '\n')
-  exe 'source' file
-endfor
+set nu
+set relativenumber
+set nobackup
+set ruler
+set laststatus=2
+set scrolloff=1
+set tags=./tags;,tags,/usr/local/etc/systags
+set expandtab
+set textwidth=120
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set autoindent
+set wildmenu
+set clipboard+=unnamed
 
-lua << EOF
-
-require("circles").setup({
-    icons = {
-        empty = "",
-        filled = "",
-        lsp_prefix = ""
-    },
-    lsp = true
-})
-
-local autopairs = require('nvim-autopairs')
-autopairs.setup{}
-
-require("nightfox").load('nightfox')
-
-require('lualine').setup {
-    options = {
-        theme = "nightfox"
-    }
-}
-
-local nvim_lsp = require('lspconfig')
-
--- python lsp 配置
-nvim_lsp.pyright.setup{}
-
--- rust lsp 配置
-nvim_lsp.rust_analyzer.setup{}
-
-EOF
-
-lua require('nvim-cmp')
-
-
-" vimtex 设置
-let g:tex_flavor = 'xelatex'
-
-let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
-let g:vimtex_view_general_options = '-r @line @pdf @tex'
-let g:vimtex_quickfix_mode = 0
-
-augroup vimtex_mac
-    autocmd!
-    autocmd User VimtexEventCompileSuccess call UpdateSkim()
-augroup END
-
-function! UpdateSkim() abort
-    let l:out = b:vimtex.out()
-    let l:src_file_path = expand('%:p')
-    let l:cmd = [g:vimtex_view_general_viewer, '-r']
-
-    if !empty(system('pgrep Skim'))
-    call extend(l:cmd, ['-g'])
+if has('persistent_undo')
+    set undofile
+    set undodir=~/.vim/undodir
+    if !isdirectory(&undodir)
+        call mkdir(&undodir, 'p', 0700)
     endif
+endif
 
-    call jobstart(l:cmd + [line('.'), l:out, l:src_file_path])
-endfunction
+if has('mouse')
+    if has('gui_running') || (&term =~ 'xterm' && !has('mac'))
+        set mouse=a
+    else
+        set mouse=nvi
+    endif
+endif
 
-" telescope 设置
-nnoremap <leader>ff <cmd>Telescope find_files<CR>
-nnoremap <leader>fg <cmd>Telescope live_grep<CR>
-nnoremap <leader>fb <cmd>Telescope buffers<CR>
-nnoremap <leader>fh <cmd>Telescope help_tags<CR>
+" ========================================================
+" 配色设置
+" ========================================================
+set guifont=IBMPlexMono-Regular:h17
+colorscheme gruvbox
+ 
+" ========================================================
+" 键盘映射设置
+" ========================================================
+let mapleader=";"
+
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>
+
+" 修改光标上下键一次移动一个屏幕行
+nnoremap <Up>       gk
+inoremap <Up>       <C-O>gk
+nnoremap <Down>     gj
+inoremap <Down>     <C-O>gj
+
+" 切换窗口的键映射
+nnoremap <C-Tab>    <C-W>w
+inoremap <C-Tab>    <C-O><C-W>w
+nnoremap <C-S-Tab>  <C-W>W
+inoremap <C-S-Tab>  <C-O><C-W>W
+
+au BufRead,BufNewFile *.go set expandtab
+
+" ========================================================
+" 设置 NerdTree
+" ========================================================
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.pyc','\~$','\.swp', '\.git',]
+
+nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>r :NERDTreeRefreshRoot<CR>
+
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+
