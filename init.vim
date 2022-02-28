@@ -2,6 +2,10 @@ call plug#begin()
     Plug 'morhetz/gruvbox'
 
     Plug 'preservim/nerdtree'
+
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+    Plug 'fatih/vim-go'
 call plug#end()
 
 " ========================================================
@@ -90,3 +94,23 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
+" ========================================================
+" golang 配置
+" ========================================================
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_fmt_command='goimports'
+let g:go_autodetect_gopath=1
+let g:go_list_type='quickfix'
+
+let g:go_version_warning=1
+let g:go_highlight_types=1
+let g:go_highlight_fields=1
+let g:go_highlight_functions=1
+let g:go_highlight_function_calls=1
+let g:go_highlight_operators=1
+let g:go_highlight_extra_types=1
+let g:go_highlight_methods=1
+let g:go_highlight_generate_tags=1
+
+let g:godef_split=2
