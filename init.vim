@@ -1,13 +1,23 @@
 call plug#begin()
+    " 配色
     Plug 'morhetz/gruvbox'
 
+    " 目录管理插件
     Plug 'preservim/nerdtree'
 
+    " lsp 插件
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+    " golang 插件
     Plug 'fatih/vim-go'
 
+    " vim-beancount 插件
     Plug 'nathangrigg/vim-beancount'
+
+    " vim-airline插件
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()
 
 " ========================================================
@@ -116,3 +126,11 @@ let g:go_highlight_methods=1
 let g:go_highlight_generate_tags=1
 
 let g:godef_split=2
+
+" ========================================================
+" airline 配置
+" ========================================================
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#left_sep=' '
+let g:airline#extensions#tabline#left_alt_sep='|'
+let g:airline#extensions#tabline#formatter='unique_tail_improved'
