@@ -18,6 +18,9 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
+    " ctrlp 插件
+    Plug 'ctrlpvim/ctrlp.vim'
+
 call plug#end()
 
 " ========================================================
