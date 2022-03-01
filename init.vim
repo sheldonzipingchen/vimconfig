@@ -6,6 +6,8 @@ call plug#begin()
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     Plug 'fatih/vim-go'
+
+    Plug 'nathangrigg/vim-beancount'
 call plug#end()
 
 " ========================================================
