@@ -21,6 +21,8 @@ call plug#begin()
     " ctrlp 插件
     Plug 'ctrlpvim/ctrlp.vim'
 
+    " tagbar 插件
+    Plug 'preservim/tagbar'
 call plug#end()
 
 " ========================================================
