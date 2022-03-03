@@ -67,6 +67,9 @@ endif
 " ========================================================
 set guifont=IBMPlexMono-Regular:h17
 colorscheme gruvbox
+if has('gui_running')
+    set bg=light
+endif
  
 " ========================================================
 " 键盘映射设置
