@@ -99,7 +99,7 @@ au BufRead,BufNewFile *.go set expandtab
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.pyc','\~$','\.swp', '\.git',]
 
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>r :NERDTreeRefreshRoot<CR>
 
 let g:NERDTreeDirArrowExpandable = '▸'
@@ -147,4 +147,4 @@ let g:airline#extensions#tabline#formatter='unique_tail_improved'
 " ========================================================
 " tagbar 配置
 " ========================================================
-nmap <leader>e  :TagbarToggle<CR>
+nmap <leader>t  :TagbarToggle<CR>
