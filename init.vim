@@ -1,6 +1,7 @@
 call plug#begin()
     " 配色
     Plug 'morhetz/gruvbox'
+    Plug 'jnurmine/Zenburn'
 
     " 目录管理插件
     Plug 'preservim/nerdtree'
@@ -23,6 +24,21 @@ call plug#begin()
 
     " tagbar 插件
     Plug 'preservim/tagbar'
+
+    " vim-gitgutter 插件
+    Plug 'airblade/vim-gitgutter'
+
+    " indentpython.vim
+    Plug 'vim-scripts/indentpython.vim'
+
+    " syntastic
+    Plug 'vim-syntastic/syntastic'
+
+    " flake8
+    Plug 'nvie/vim-flake8'
+
+    " vim-virtualenv
+    Plug 'jmcantrell/vim-virtualenv'
 call plug#end()
 
 " ========================================================
@@ -30,6 +46,7 @@ call plug#end()
 " ========================================================
 filetype plugin indent on
 
+set encoding=utf-8
 set nu
 set relativenumber
 set nobackup
@@ -66,9 +83,12 @@ endif
 " 配色设置
 " ========================================================
 set guifont=IBMPlexMono-Regular:h17
-colorscheme gruvbox
 if has('gui_running')
-    set bg=light
+    " set bg=light
+    set bg=dark
+    colorscheme gruvbox
+else
+    colorscheme zenburn
 endif
  
 " ========================================================
@@ -92,12 +112,17 @@ nnoremap <C-S-Tab>  <C-W>W
 inoremap <C-S-Tab>  <C-O><C-W>W
 
 au BufRead,BufNewFile *.go set expandtab
+au BufNewFile,BufRead *.py set expandtab
+au BufRead,BufNewFile *.js, *.html, *.css
+            \ set tabstop=2
+            \ set softtabstop=2
+            \ set shiftwidth=2
 
 " ========================================================
 " 设置 NerdTree
 " ========================================================
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\.pyc','\~$','\.swp', '\.git',]
+let NERDTreeIgnore=['\.pyc','\~$','\.swp', '\.git', '\~$']
 
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>r :NERDTreeRefreshRoot<CR>
@@ -148,3 +173,16 @@ let g:airline#extensions#tabline#formatter='unique_tail_improved'
 " tagbar 配置
 " ========================================================
 nmap <leader>t  :TagbarToggle<CR>
+
+
+" ========================================================
+" ctrlp 配置
+" ========================================================
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+
+" ========================================================
+" python 配置
+" ========================================================
+let python_highlight_all=1
+syntax on
