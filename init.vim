@@ -5,6 +5,8 @@ call plug#begin()
 
     " 目录管理插件
     Plug 'preservim/nerdtree'
+    Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
 
     " lsp 插件
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -173,7 +175,33 @@ let g:airline#extensions#tabline#formatter='unique_tail_improved'
 " tagbar 配置
 " ========================================================
 nmap <leader>t  :TagbarToggle<CR>
-
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " ========================================================
 " ctrlp 配置
